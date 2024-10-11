@@ -1,42 +1,99 @@
-import React from 'react';
-import { cn } from "@/lib/utils";
-import { LayoutDashboard, Users, BookOpen, GitFork, Zap, Plug, BarChart3, X } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+'use client'
+
+import React from 'react'
+import { cn } from '@/lib/utils'
+import {
+  LayoutDashboard,
+  Users,
+  BookOpen,
+  GitFork,
+  Zap,
+  Plug,
+  BarChart3,
+  X,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import RecentItems from '@/components/ui/RecentItems';
-import UserProfile from '@/components/ui/UserProfile';
+} from '@/components/ui/tooltip'
+import RecentItems from '@/components/ui/RecentItems'
+import UserProfile from '@/components/ui/UserProfile'
+import { usePathname, useRouter } from 'next/navigation'
 
-type View = 'overview' | 'agents' | 'knowledgeBase' | 'journeys' | 'automations' | 'integrations' | 'monitoring';
+type View =
+  | 'overview'
+  | 'agents'
+  | 'knowledgeBase'
+  | 'journeys'
+  | 'automations'
+  | 'integrations'
+  | 'monitoring'
 
 interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-  currentView: View;
-  setCurrentView: (view: View) => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 const sidebarItems = [
-  { icon: <LayoutDashboard className="w-4 h-4" />, text: "Overview", view: 'overview' as View },
-  { icon: <Users className="w-4 h-4" />, text: "Agent", view: 'agents' as View },
-  { icon: <BookOpen className="w-4 h-4" />, text: "Knowledge Base", view: 'knowledgeBase' as View },
-  { icon: <GitFork className="w-4 h-4" />, text: "Journeys", view: 'journeys' as View },
-  { icon: <Zap className="w-4 h-4" />, text: "Automations", view: 'automations' as View },
-  { icon: <Plug className="w-4 h-4" />, text: "Integrations", view: 'integrations' as View },
-  { icon: <BarChart3 className="w-4 h-4" />, text: "Monitoring", view: 'monitoring' as View },
-];
+  {
+    icon: <LayoutDashboard className="w-4 h-4" />,
+    text: 'Overview',
+    view: 'overview' as View,
+    href: '/overview',
+  },
+  {
+    icon: <Users className="w-4 h-4" />,
+    text: 'Agent',
+    view: 'agents' as View,
+    href: '/agents',
+  },
+  {
+    icon: <BookOpen className="w-4 h-4" />,
+    text: 'Knowledge Base',
+    view: 'knowledgeBase' as View,
+    href: '/knowledge-base',
+  },
+  {
+    icon: <GitFork className="w-4 h-4" />,
+    text: 'Journeys',
+    view: 'journeys' as View,
+    href: '/journeys',
+  },
+  {
+    icon: <Zap className="w-4 h-4" />,
+    text: 'Automations',
+    view: 'automations' as View,
+    href: '/automations',
+  },
+  {
+    icon: <Plug className="w-4 h-4" />,
+    text: 'Integrations',
+    view: 'integrations' as View,
+    href: '/integrations',
+  },
+  {
+    icon: <BarChart3 className="w-4 h-4" />,
+    text: 'Monitoring',
+    view: 'monitoring' as View,
+    href: '/monitoring',
+  },
+]
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentView, setCurrentView }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const router = useRouter()
+  const pathname = usePathname()
+
   return (
-    <aside className={cn(
-      "fixed inset-y-0 left-0 z-50 w-64 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-r flex flex-col transition-transform duration-200 ease-in-out lg:relative",
-      isOpen ? 'translate-x-0' : '-translate-x-full',
-      'lg:translate-x-0'
-    )}>
+    <aside
+      className={cn(
+        'fixed inset-y-0 left-0 z-50 w-64 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-r flex flex-col transition-transform duration-200 ease-in-out lg:relative',
+        isOpen ? 'translate-x-0' : '-translate-x-full',
+        'lg:translate-x-0'
+      )}
+    >
       <div className="flex justify-between items-center p-4 lg:hidden">
         <span className="font-semibold">Menu</span>
         <Button variant="ghost" size="icon" onClick={onClose}>
@@ -52,42 +109,42 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentView, setCurr
       </div>
       <nav className="space-y-2 p-4 flex-grow">
         {sidebarItems.map((item, index) => (
-          <SidebarItem 
-            key={index} 
-            {...item} 
-            active={item.view === currentView}
-            onClick={() => setCurrentView(item.view)}
+          <SidebarItem
+            key={index}
+            {...item}
+            active={pathname === item.href}
+            onClick={() => router.push(item.href)}
           />
         ))}
       </nav>
       <RecentItems
         title="RECENT AGENT"
         items={[
-          { color: "bg-green-500", initials: "SA", name: "Sales", count: 120 },
-          { color: "bg-purple-500", initials: "MA", name: "Marketing" },
-          { color: "bg-blue-500", initials: "CA", name: "Call Center" },
-          { color: "bg-pink-500", initials: "EA", name: "Error Handling" },
+          { color: 'bg-green-500', initials: 'SA', name: 'Sales', count: 120 },
+          { color: 'bg-purple-500', initials: 'MA', name: 'Marketing' },
+          { color: 'bg-blue-500', initials: 'CA', name: 'Call Center' },
+          { color: 'bg-pink-500', initials: 'EA', name: 'Error Handling' },
         ]}
       />
     </aside>
-  );
-};
+  )
+}
 
 const SidebarItem: React.FC<{
-  icon: React.ReactNode;
-  text: string;
-  active?: boolean;
-  onClick: () => void;
+  icon: React.ReactNode
+  text: string
+  active?: boolean
+  onClick: () => void
 }> = ({ icon, text, active = false, onClick }) => (
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          variant={active ? "secondary" : "ghost"}
+          variant={active ? 'secondary' : 'ghost'}
           className={cn(
-            "w-full justify-start",
-            active && "font-semibold",
-            !active && "text-muted-foreground"
+            'w-full justify-start',
+            active && 'font-semibold',
+            !active && 'text-muted-foreground'
           )}
           onClick={onClick}
         >
@@ -100,6 +157,6 @@ const SidebarItem: React.FC<{
       </TooltipContent>
     </Tooltip>
   </TooltipProvider>
-);
+)
 
-export default Sidebar;
+export default Sidebar

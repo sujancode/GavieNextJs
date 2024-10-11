@@ -1,16 +1,23 @@
-"use client"
+'use client'
 
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import React from 'react'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from 'recharts'
 
 const data = [
   { name: 'Questions Asked', value: 30254 },
   { name: 'Calls', value: 8132 },
   { name: 'Tickets', value: 2089 },
-];
+]
 
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b'];
+const COLORS = ['#3b82f6', '#10b981', '#f59e0b']
 
 const AverageCustomerInteraction: React.FC = () => {
   return (
@@ -31,22 +38,25 @@ const AverageCustomerInteraction: React.FC = () => {
               dataKey="value"
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: 'hsl(var(--card))', 
+            <Tooltip
+              contentStyle={{
+                backgroundColor: 'hsl(var(--card))',
                 borderColor: 'hsl(var(--border))',
-                color: 'hsl(var(--card-foreground))'
-              }} 
+                color: 'hsl(var(--card-foreground))',
+              }}
             />
             <Legend />
           </PieChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default AverageCustomerInteraction;
+export default AverageCustomerInteraction

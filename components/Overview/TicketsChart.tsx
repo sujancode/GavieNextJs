@@ -1,6 +1,15 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React from 'react'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 
 const data = [
   { month: 'Jan', customerInteractions: 400, tickets: 350 },
@@ -15,7 +24,7 @@ const data = [
   { month: 'Oct', customerInteractions: 600, tickets: 520 },
   { month: 'Nov', customerInteractions: 550, tickets: 490 },
   { month: 'Dec', customerInteractions: 500, tickets: 450 },
-];
+]
 
 const TicketsChart: React.FC = () => {
   return (
@@ -29,21 +38,26 @@ const TicketsChart: React.FC = () => {
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" />
             <YAxis stroke="hsl(var(--muted-foreground))" />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: 'hsl(var(--card))', 
+            <Tooltip
+              contentStyle={{
+                backgroundColor: 'hsl(var(--card))',
                 borderColor: 'hsl(var(--border))',
-                color: 'hsl(var(--card-foreground))'
-              }} 
+                color: 'hsl(var(--card-foreground))',
+              }}
             />
             <Legend />
-            <Line type="monotone" dataKey="customerInteractions" stroke="#3b82f6" activeDot={{ r: 8 }} />
+            <Line
+              type="monotone"
+              dataKey="customerInteractions"
+              stroke="#3b82f6"
+              activeDot={{ r: 8 }}
+            />
             <Line type="monotone" dataKey="tickets" stroke="#10b981" />
           </LineChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default TicketsChart;
+export default TicketsChart

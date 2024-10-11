@@ -1,24 +1,32 @@
-"use client"
+'use client'
 
-import React, { useState } from 'react';
-import { Plus, Search, LayoutGrid, List } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import AutomationCard from './AutomationCard';
-import AutomationFlow from './AutomationFlow';
+import React, { useState } from 'react'
+import { Plus, Search, LayoutGrid, List } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import AutomationCard from './AutomationCard'
+import AutomationFlow from './AutomationFlow'
 
 interface AutomationsProps {
-  viewMode: 'grid' | 'list';
-  toggleViewMode: () => void;
+  viewMode: 'grid' | 'list'
+  toggleViewMode: () => void
 }
 
-const Automations: React.FC<AutomationsProps> = ({ viewMode, toggleViewMode }) => {
-  const [showFlow, setShowFlow] = useState(false);
+const Automations: React.FC<AutomationsProps> = ({
+  viewMode,
+  toggleViewMode,
+}) => {
+  const [showFlow, setShowFlow] = useState(false)
   const automations = [
     { id: 1, title: 'Welcome Email Sequence', type: 'Email', status: 'Active' },
     { id: 2, title: 'Lead Scoring', type: 'CRM', status: 'Inactive' },
-    { id: 3, title: 'Support Ticket Assignment', type: 'Helpdesk', status: 'Active' },
-  ];
+    {
+      id: 3,
+      title: 'Support Ticket Assignment',
+      type: 'Helpdesk',
+      status: 'Active',
+    },
+  ]
 
   return (
     <div className="space-y-6">
@@ -30,7 +38,11 @@ const Automations: React.FC<AutomationsProps> = ({ viewMode, toggleViewMode }) =
             Create Automation
           </Button>
           <Button onClick={toggleViewMode}>
-            {viewMode === 'grid' ? <List className="w-4 h-4" /> : <LayoutGrid className="w-4 h-4" />}
+            {viewMode === 'grid' ? (
+              <List className="w-4 h-4" />
+            ) : (
+              <LayoutGrid className="w-4 h-4" />
+            )}
           </Button>
         </div>
       </div>
@@ -43,10 +55,12 @@ const Automations: React.FC<AutomationsProps> = ({ viewMode, toggleViewMode }) =
       {showFlow ? (
         <AutomationFlow onClose={() => setShowFlow(false)} />
       ) : (
-        <div className={`grid gap-6 ${viewMode === 'grid' ? 'sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
+        <div
+          className={`grid gap-6 ${viewMode === 'grid' ? 'sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}
+        >
           {automations.map((automation) => (
-            <AutomationCard 
-              key={automation.id} 
+            <AutomationCard
+              key={automation.id}
               title={automation.title}
               type={automation.type}
               status={automation.status as 'Active' | 'Inactive'}
@@ -55,7 +69,7 @@ const Automations: React.FC<AutomationsProps> = ({ viewMode, toggleViewMode }) =
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Automations;
+export default Automations

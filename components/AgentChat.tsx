@@ -1,33 +1,38 @@
-"use client"
+'use client'
 
-import React, { useState } from 'react';
-import { useParams } from 'next/navigation';
-import { agentStore } from '@/stores/AgentStore';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Send } from 'lucide-react';
+import React, { useState } from 'react'
+import { useParams } from 'next/navigation'
+import { agentStore } from '@/stores/AgentStore'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Send } from 'lucide-react'
 
 const AgentChat = () => {
-  const params = useParams();
-  const agentId = parseInt(params.id as string);
-  const agent = agentStore.agents.find(a => a.id == agentId);
+  const params = useParams()
+  const agentId = parseInt(params.id as string)
+  const agent = agentStore.agents.find((a) => a.id == agentId)
 
-  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>(
+    []
+  )
+  const [inputMessage, setInputMessage] = useState('')
 
   const sendMessage = () => {
     if (inputMessage.trim()) {
-      setMessages([...messages, { text: inputMessage, isUser: true }]);
-      setInputMessage('');
+      setMessages([...messages, { text: inputMessage, isUser: true }])
+      setInputMessage('')
       // Simulate agent response
       setTimeout(() => {
-        setMessages(prev => [...prev, { text: `Response from ${agent?.name}`, isUser: false }]);
-      }, 1000);
+        setMessages((prev) => [
+          ...prev,
+          { text: `Response from ${agent?.name}`, isUser: false },
+        ])
+      }, 1000)
     }
-  };
+  }
 
   if (!agent) {
-    return <div>Agent not found</div>;
+    return <div>Agent not found</div>
   }
 
   return (
@@ -37,8 +42,13 @@ const AgentChat = () => {
       </div>
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
-          <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[70%] p-3 rounded-lg ${message.isUser ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}>
+          <div
+            key={index}
+            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+          >
+            <div
+              className={`max-w-[70%] p-3 rounded-lg ${message.isUser ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}
+            >
               {message.text}
             </div>
           </div>
@@ -58,7 +68,7 @@ const AgentChat = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AgentChat;
+export default AgentChat

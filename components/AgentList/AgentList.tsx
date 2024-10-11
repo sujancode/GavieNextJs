@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import React, { useState } from 'react';
-import { ColumnDef } from '@tanstack/react-table';
-import { useRouter } from 'next/navigation';
-import { MoreHorizontal, LayoutGrid, List } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import React, { useState } from 'react'
+import { ColumnDef } from '@tanstack/react-table'
+import { useRouter } from 'next/navigation'
+import { MoreHorizontal, LayoutGrid, List } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,33 +13,33 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { DataTable } from '@/components/ui/DataTable';
-import AvatarWithFallback from '@/components/ui/AvatarWithFallback';
-import SearchBar from './SearchBar';
-import ActionSelect from './ActionSelect';
+} from '@/components/ui/dropdown-menu'
+import { DataTable } from '@/components/ui/DataTable'
+import AvatarWithFallback from '@/components/ui/AvatarWithFallback'
+import SearchBar from './SearchBar'
+import ActionSelect from './ActionSelect'
 
-import { agentStore } from '@/stores/AgentStore';
+import { agentStore } from '@/stores/AgentStore'
 
 interface AgentListProps {
-  viewMode: 'grid' | 'list';
-  toggleViewMode: () => void;
+  viewMode: 'grid' | 'list'
+  toggleViewMode: () => void
 }
 
 interface Agent {
-  id: number;
-  name: string;
-  model: string;
-  knowledgeBase: string;
-  deployment: number;
-  avatar: string;
+  id: number
+  name: string
+  model: string
+  knowledgeBase: string
+  deployment: number
+  avatar: string
 }
 
-const agents: Agent[] = agentStore.agents;
+const agents: Agent[] = agentStore.agents
 
 const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
-  const router = useRouter();
-  const [rowSelection, setRowSelection] = useState({});
+  const router = useRouter()
+  const [rowSelection, setRowSelection] = useState({})
 
   const columns: ColumnDef<Agent>[] = [
     {
@@ -65,11 +65,14 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
       accessorKey: 'name',
       header: 'AGENTS',
       cell: ({ row }) => (
-        <div 
+        <div
           className="flex items-center space-x-2 cursor-pointer"
           onClick={() => router.push(`/agents/${row.original.id}`)}
         >
-          <AvatarWithFallback name={row.original.name} avatarColor={row.original.avatar} />
+          <AvatarWithFallback
+            name={row.original.name}
+            avatarColor={row.original.avatar}
+          />
           <span>{row.original.name}</span>
         </div>
       ),
@@ -93,7 +96,7 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
     {
       id: 'actions',
       cell: ({ row }) => {
-        const agent = row.original;
+        const agent = row.original
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -104,7 +107,11 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(agent.id.toString())}>
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(agent.id.toString())
+                }
+              >
                 Copy agent ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -112,10 +119,10 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
               <DropdownMenuItem>Edit agent</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        );
+        )
       },
     },
-  ];
+  ]
 
   return (
     <div className="space-y-4">
@@ -124,7 +131,11 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
         <div className="flex items-center space-x-2">
           <ActionSelect />
           <Button onClick={toggleViewMode}>
-            {viewMode === 'grid' ? <List className="h-4 w-4" /> : <LayoutGrid className="h-4 w-4" />}
+            {viewMode === 'grid' ? (
+              <List className="h-4 w-4" />
+            ) : (
+              <LayoutGrid className="h-4 w-4" />
+            )}
           </Button>
         </div>
       </div>
@@ -134,7 +145,7 @@ const AgentList: React.FC<AgentListProps> = ({ viewMode, toggleViewMode }) => {
         onRowSelectionChange={setRowSelection}
       />
     </div>
-  );
-};
+  )
+}
 
-export default AgentList;
+export default AgentList

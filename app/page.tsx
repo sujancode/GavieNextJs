@@ -1,9 +1,5 @@
-import AgentDashboard from '@/components/AgentDashboard';
+import { redirect } from 'next/navigation'
 
 export default function Home() {
-  return (
-    <main>
-      <AgentDashboard />
-    </main>
-  );
+  redirect('/overview')
 }

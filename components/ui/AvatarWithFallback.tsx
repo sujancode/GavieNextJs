@@ -1,19 +1,28 @@
-import React from 'react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import React from 'react'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
 interface AvatarWithFallbackProps {
-  name: string;
-  avatarColor: string;
+  name: string
+  avatarColor: string
 }
 
-const AvatarWithFallback: React.FC<AvatarWithFallbackProps> = ({ name, avatarColor }) => {
-  const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+const AvatarWithFallback: React.FC<AvatarWithFallbackProps> = ({
+  name,
+  avatarColor,
+}) => {
+  const initials = name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
 
   return (
     <Avatar>
-      <AvatarFallback style={{ backgroundColor: avatarColor }}>{initials}</AvatarFallback>
+      <AvatarFallback style={{ backgroundColor: avatarColor }}>
+        {initials}
+      </AvatarFallback>
     </Avatar>
-  );
-};
+  )
+}
 
-export default AvatarWithFallback;
+export default AvatarWithFallback

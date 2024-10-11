@@ -1,18 +1,27 @@
-"use client"
+'use client'
 
-import React from 'react';
-import { LayoutGrid, List } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import MetricCard from './MetricCard';
-import PerformanceChart from './PerformanceChart';
+import React from 'react'
+import { LayoutGrid, List } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import MetricCard from './MetricCard'
+import PerformanceChart from './PerformanceChart'
 
 interface MonitoringProps {
-  viewMode: 'grid' | 'list';
-  toggleViewMode: () => void;
+  viewMode: 'grid' | 'list'
+  toggleViewMode: () => void
 }
 
-const Monitoring: React.FC<MonitoringProps> = ({ viewMode, toggleViewMode }) => {
+const Monitoring: React.FC<MonitoringProps> = ({
+  viewMode,
+  toggleViewMode,
+}) => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
@@ -29,12 +38,18 @@ const Monitoring: React.FC<MonitoringProps> = ({ viewMode, toggleViewMode }) => 
             </SelectContent>
           </Select>
           <Button onClick={toggleViewMode}>
-            {viewMode === 'grid' ? <List className="w-4 h-4" /> : <LayoutGrid className="w-4 h-4" />}
+            {viewMode === 'grid' ? (
+              <List className="w-4 h-4" />
+            ) : (
+              <LayoutGrid className="w-4 h-4" />
+            )}
           </Button>
         </div>
       </div>
 
-      <div className={`grid gap-4 ${viewMode === 'grid' ? 'sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'}`}>
+      <div
+        className={`grid gap-4 ${viewMode === 'grid' ? 'sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'}`}
+      >
         <MetricCard title="Total Requests" value="1,234" change={5.7} />
         <MetricCard title="Avg. Response Time" value="250ms" change={-2.3} />
         <MetricCard title="Error Rate" value="0.5%" change={-0.2} />
@@ -43,7 +58,7 @@ const Monitoring: React.FC<MonitoringProps> = ({ viewMode, toggleViewMode }) => 
 
       <PerformanceChart />
     </div>
-  );
-};
+  )
+}
 
-export default Monitoring;
+export default Monitoring

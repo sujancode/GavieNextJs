@@ -1,20 +1,22 @@
-import React from 'react';
-import AvatarWithFallback from './AvatarWithFallback';
+import React from 'react'
+import AvatarWithFallback from './AvatarWithFallback'
 
 interface RecentItemsProps {
-  title: string;
+  title: string
   items: Array<{
-    color: string;
-    initials: string;
-    name: string;
-    count?: number;
-  }>;
+    color: string
+    initials: string
+    name: string
+    count?: number
+  }>
 }
 
 const RecentItems: React.FC<RecentItemsProps> = ({ title, items }) => {
   return (
     <div className="p-4">
-      <h3 className="mb-2 text-sm font-semibold text-muted-foreground">{title}</h3>
+      <h3 className="mb-2 text-sm font-semibold text-muted-foreground">
+        {title}
+      </h3>
       <ul className="space-y-2">
         {items.map((item, index) => (
           <li key={index} className="flex items-center">
@@ -29,7 +31,7 @@ const RecentItems: React.FC<RecentItemsProps> = ({ title, items }) => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default RecentItems;
+export default RecentItems

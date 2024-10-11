@@ -1,15 +1,19 @@
-import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 
 interface CircularProgressCardProps {
-  title: string;
-  percentage: number;
-  color: string;
+  title: string
+  percentage: number
+  color: string
 }
 
-const CircularProgressCard: React.FC<CircularProgressCardProps> = ({ title, percentage, color }) => {
-  const circumference = 2 * Math.PI * 45;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+const CircularProgressCard: React.FC<CircularProgressCardProps> = ({
+  title,
+  percentage,
+  color,
+}) => {
+  const circumference = 2 * Math.PI * 45
+  const strokeDashoffset = circumference - (percentage / 100) * circumference
 
   return (
     <Card>
@@ -35,7 +39,15 @@ const CircularProgressCard: React.FC<CircularProgressCardProps> = ({ title, perc
             strokeDashoffset={strokeDashoffset}
             transform="rotate(-90 50 50)"
           />
-          <text x="50" y="50" fontFamily="Verdana" fontSize="20" textAnchor="middle" alignmentBaseline="middle" fill="currentColor">
+          <text
+            x="50"
+            y="50"
+            fontFamily="Verdana"
+            fontSize="20"
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fill="currentColor"
+          >
             {percentage}%
           </text>
         </svg>
@@ -45,7 +57,7 @@ const CircularProgressCard: React.FC<CircularProgressCardProps> = ({ title, perc
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CircularProgressCard;
+export default CircularProgressCard

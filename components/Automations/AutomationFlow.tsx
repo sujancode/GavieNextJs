@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react'
 import ReactFlow, {
   addEdge,
   MiniMap,
@@ -9,10 +9,10 @@ import ReactFlow, {
   Background,
   BackgroundVariant,
   useEdgesState,
-  Edge
-} from 'react-flow-renderer';
-import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+  Edge,
+} from 'react-flow-renderer'
+import { Button } from '@/components/ui/button'
+import { X } from 'lucide-react'
 
 const initialNodes = [
   {
@@ -21,20 +21,23 @@ const initialNodes = [
     data: { label: 'Start' },
     position: { x: 250, y: 25 },
   },
-];
+]
 
-const initialEdges: Edge<any>[] = [];
+const initialEdges: Edge<any>[] = []
 
 interface AutomationFlowProps {
-  onClose: () => void;
+  onClose: () => void
 }
 
 const AutomationFlow: React.FC<AutomationFlowProps> = ({ onClose }) => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [nodeName, setNodeName] = useState('');
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+  const [nodeName, setNodeName] = useState('')
 
-  const onConnect = useCallback((params: Edge) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
+  const onConnect = useCallback(
+    (params: Edge) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  )
 
   const addNode = () => {
     if (nodeName) {
@@ -42,11 +45,11 @@ const AutomationFlow: React.FC<AutomationFlowProps> = ({ onClose }) => {
         id: (nodes.length + 1).toString(),
         data: { label: nodeName },
         position: { x: Math.random() * 300, y: Math.random() * 300 },
-      };
-      setNodes((nds) => nds.concat(newNode));
-      setNodeName('');
+      }
+      setNodes((nds) => nds.concat(newNode))
+      setNodeName('')
     }
-  };
+  }
 
   return (
     <div className="h-[600px] w-full border rounded-lg relative">
@@ -77,7 +80,7 @@ const AutomationFlow: React.FC<AutomationFlowProps> = ({ onClose }) => {
         <Background variant={BackgroundVariant.Lines} gap={12} size={1} />
       </ReactFlow>
     </div>
-  );
-};
+  )
+}
 
-export default AutomationFlow;
+export default AutomationFlow

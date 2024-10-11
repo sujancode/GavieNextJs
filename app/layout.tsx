@@ -1,19 +1,20 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import DashboardLayout from '@/components/DashboardLayout'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'GAVIE AI - Agent Dashboard',
   description: 'AI Agent Management Dashboard',
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -24,9 +25,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <DashboardLayout>{children}</DashboardLayout>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

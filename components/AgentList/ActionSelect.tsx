@@ -1,5 +1,11 @@
-import React from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import React from 'react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const ActionSelect = () => (
   <Select>
@@ -12,6 +18,6 @@ const ActionSelect = () => (
       <SelectItem value="duplicate">Duplicate</SelectItem>
     </SelectContent>
   </Select>
-);
+)
 
-export default ActionSelect;
+export default ActionSelect

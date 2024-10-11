@@ -1,21 +1,27 @@
-import React from 'react';
-import { Zap } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from 'react'
+import { Zap } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface AutomationCardProps {
-  title: string;
-  type: string;
-  status: 'Active' | 'Inactive';
+  title: string
+  type: string
+  status: 'Active' | 'Inactive'
 }
 
-const AutomationCard: React.FC<AutomationCardProps> = ({ title, type, status }) => {
+const AutomationCard: React.FC<AutomationCardProps> = ({
+  title,
+  type,
+  status,
+}) => {
   return (
     <Card className="border border-border hover:border-primary transition-colors duration-200 hover:shadow-md">
       <CardHeader>
         <CardTitle className="flex justify-between items-start">
           <span>{title}</span>
-          <Badge variant={status === 'Active' ? 'default' : 'secondary'}>{status}</Badge>
+          <Badge variant={status === 'Active' ? 'default' : 'secondary'}>
+            {status}
+          </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -25,7 +31,7 @@ const AutomationCard: React.FC<AutomationCardProps> = ({ title, type, status }) 
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default AutomationCard;
+export default AutomationCard
