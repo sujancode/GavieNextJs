@@ -73,7 +73,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentView, setCurr
   );
 };
 
-const SidebarItem = ({ icon, text, active = false, onClick }) => (
+const SidebarItem: React.FC<{
+  icon: React.ReactNode;
+  text: string;
+  active?: boolean;
+  onClick: () => void;
+}> = ({ icon, text, active = false, onClick }) => (
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>

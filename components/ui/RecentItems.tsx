@@ -18,7 +18,7 @@ const RecentItems: React.FC<RecentItemsProps> = ({ title, items }) => {
       <ul className="space-y-2">
         {items.map((item, index) => (
           <li key={index} className="flex items-center">
-            <AvatarWithFallback name={item.name} color={item.color} />
+            <AvatarWithFallback name={item.name} avatarColor={item.initials} />
             <span className="ml-2 text-sm">{item.name}</span>
             {item.count !== undefined && (
               <span className="ml-auto text-xs bg-muted text-muted-foreground rounded-full px-2 py-1">

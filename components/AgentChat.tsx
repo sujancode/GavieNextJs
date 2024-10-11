@@ -10,7 +10,7 @@ import { Send } from 'lucide-react';
 const AgentChat = () => {
   const params = useParams();
   const agentId = parseInt(params.id as string);
-  const agent = agentStore.agents.find(a => a.id === agentId);
+  const agent = agentStore.agents.find(a => a.id == agentId);
 
   const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -50,7 +50,7 @@ const AgentChat = () => {
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Type a message..."
-            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
           />
           <Button onClick={sendMessage}>
             <Send className="h-4 w-4" />

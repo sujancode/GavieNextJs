@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const Header = ({ toggleSidebar }) => {
+const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
   return (
     <header className="flex justify-between items-center p-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center space-x-4">
